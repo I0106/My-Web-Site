@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Irene Murhula Mugwarhiriza — Statistician and Data Scientist based in Nairobi, Kenya. Specialising in machine learning, credit risk, Power BI, Python and SQL."/>
+  <meta name="keywords" content="Irene Murhula, Irene Mugwarhiriza, Data Scientist, Statistician, Nairobi, Kenya, Machine Learning, Python, Power BI, Credit Risk"/>
+  <meta name="author" content="Irene Murhula Mugwarhiriza"/>
+  <title>Irene Murhula Mugwarhiriza | Data Scientist & Statistician</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ── TOKENS ────────────────────────────────────── */
+    :root {
+      --ink:       #0f1117;
+      --ink-soft:  #3d3f4a;
+      --ink-muted: #7a7d8b;
+      --bg:        #f7f6f2;
+      --bg-card:   #ffffff;
+      --teal:      #0d8c7a;
+      --teal-mid:  #0aab92;
+      --teal-pale: #d6f5ef;
+      --gold:      #e8a020;
+      --gold-pale: #fdf3e0;
+      --border:    #e2e0da;
+      --radius:    12px;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+
+    /* ── RESET ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ── NAV ────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247,246,242,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* ── HERO ───────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 100px 5% 60px;
+      gap: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      right: -100px; top: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(13,140,122,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-text { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--teal);
+      background: var(--teal-pale);
+      padding: 6px 14px;
+      border-radius: 4px;
+      margin-bottom: 1.4rem;
+      letter-spacing: 0.06em;
+    }
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+    .hero-name em {
+      font-style: normal;
+      color: var(--teal);
+    }
+    .hero-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.01em;
+    }
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 2.2rem;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--teal);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: #0aab92; transform: translateY(-2px); }
+    .btn-outline {
+      border: 2px solid var(--teal);
+      color: var(--teal);
+      padding: 11px 26px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: all .2s;
+    }
+    .btn-outline:hover { background: var(--teal); color: #fff; transform: translateY(-2px); }
+
+    /* ── HERO CARD (right side) ───────────────────── */
+    .hero-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 2.2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 48px rgba(13,140,122,0.08);
+      position: relative; z-index: 1;
+    }
+    .hero-card-avatar {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 900;
+      color: #fff;
+      margin-bottom: 1.2rem;
+    }
+    .hero-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem; font-weight: 700;
+      margin-bottom: .2rem;
+    }
+    .hero-card .card-role {
+      font-size: .88rem; color: var(--teal); font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .hero-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: .8rem; margin-bottom: 1.4rem;
+    }
+    .stat-box {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: .8rem 1rem;
+      border: 1px solid var(--border);
+    }
+    .stat-box .stat-num {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 900; color: var(--teal);
+      line-height: 1;
+    }
+    .stat-box .stat-label {
+      font-size: .75rem; color: var(--ink-muted); margin-top: .25rem;
+    }
+    .hero-langs {
+      display: flex; gap: .5rem; flex-wrap: wrap;
+    }
+    .lang-chip {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      background: var(--teal-pale);
+      color: var(--teal);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* ── SECTIONS COMMON ──────────────────────────── */
+    section { padding: 90px 5%; }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--teal);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .6rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      margin-bottom: 3rem;
+      color: var(--ink);
+    }
+    .section-title span { color: var(--teal); }
+
+    /* ── SKILLS ─────────────────────────────────────── */
+    #skills { background: var(--ink); }
+    #skills .section-label { color: var(--teal-mid); }
+    #skills .section-title { color: #fff; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.2rem;
+    }
+    .skill-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      transition: background .2s, border-color .2s;
+    }
+    .skill-card:hover {
+      background: rgba(13,140,122,0.12);
+      border-color: rgba(13,171,146,0.4);
+    }
+    .skill-card h4 {
+      font-size: .9rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: .8rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .skill-card h4 .icon { font-size: 1.1rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .skill-tag {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--teal-mid);
+      background: rgba(13,171,146,0.12);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    /* ── EXPERIENCE ─────────────────────────────────── */
+    #experience { background: var(--bg-card); }
+    .timeline { position: relative; padding-left: 2.5rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 8px; top: 8px; bottom: 8px;
+      width: 2px; background: var(--border);
+    }
+    .tl-item { position: relative; margin-bottom: 2.8rem; }
+    .tl-dot {
+      position: absolute;
+      left: -2.5rem;
+      top: 6px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--teal);
+      border: 3px solid var(--bg-card);
+      box-shadow: 0 0 0 2px var(--teal);
+    }
+    .tl-date {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--teal);
+      margin-bottom: .35rem;
+    }
+    .tl-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: .15rem;
+    }
+    .tl-org {
+      font-size: .88rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+      margin-bottom: .7rem;
+    }
+    .tl-bullets { padding-left: 1.2rem; }
+    .tl-bullets li {
+      list-style: disc;
+      font-size: .93rem;
+      color: var(--ink-soft);
+      margin-bottom: .35rem;
+      line-height: 1.6;
+    }
+
+    /* ── PROJECTS ───────────────────────────────────── */
+    #projects { background: var(--bg); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+    }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.09); }
+    .project-domain {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--teal);
+      background: var(--teal-pale);
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: .8rem;
+      letter-spacing: .06em;
+    }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: .6rem;
+      line-height: 1.3;
+    }
+    .project-desc {
+      font-size: .9rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .project-tools { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .tool-chip {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      background: #f0f0ed;
+      color: var(--ink-soft);
+      padding: 3px 9px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    /* ── EDUCATION ──────────────────────────────────── */
+    #education { background: var(--bg-card); }
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .edu-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem;
+      position: relative;
+    }
+    .edu-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--gold);
+      background: var(--gold-pale);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: .9rem;
+    }
+    .edu-degree {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: .3rem;
+    }
+    .edu-school {
+      font-size: .88rem;
+      color: var(--teal);
+      font-weight: 600;
+      margin-bottom: .3rem;
+    }
+    .edu-period {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--ink-muted);
+      margin-bottom: .8rem;
+    }
+    .edu-focus {
+      font-size: .87rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    /* ── ACHIEVEMENTS ───────────────────────────────── */
+    #achievements { background: linear-gradient(135deg, var(--ink) 0%, #1a2340 100%); }
+    #achievements .section-label { color: var(--gold); }
+    #achievements .section-title { color: #fff; }
+    .ach-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+    .ach-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(232,160,32,0.25);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+    }
+    .ach-icon { font-size: 1.8rem; margin-bottom: .8rem; }
+    .ach-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: .3rem;
+    }
+    .ach-org {
+      font-size: .82rem;
+      color: rgba(255,255,255,.5);
+      font-family: var(--font-mono);
+      margin-bottom: .6rem;
+    }
+    .ach-desc { font-size: .88rem; color: rgba(255,255,255,.7); line-height: 1.6; }
+
+    /* ── LEADERSHIP ─────────────────────────────────── */
+    #leadership { background: var(--bg); }
+    .lead-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+    .lead-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+    }
+    .lead-role {
+      font-weight: 700;
+      color: var(--teal);
+      font-size: .95rem;
+      margin-bottom: .15rem;
+    }
+    .lead-club {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: .3rem;
+    }
+    .lead-meta {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--ink-muted);
+      margin-bottom: .6rem;
+    }
+    .lead-desc { font-size: .88rem; color: var(--ink-soft); line-height: 1.6; }
+
+    /* ── CONTACT ────────────────────────────────────── */
+    #contact { background: var(--bg-card); }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-copy h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+    .contact-copy p {
+      color: var(--ink-soft);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: .8rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: .8rem;
+      padding: .9rem 1.2rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--ink);
+      transition: border-color .2s, background .2s;
+    }
+    .contact-link:hover { border-color: var(--teal); background: var(--teal-pale); }
+    .contact-link .cl-icon { font-size: 1.2rem; }
+    .contact-link .cl-label { color: var(--ink-muted); font-size: .78rem; font-family: var(--font-mono); display: block; }
+    .contact-link .cl-value { color: var(--teal); font-weight: 600; font-size: .88rem; }
+    .referees { margin-top: 2.5rem; }
+    .referees h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+    .referee-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      margin-bottom: .8rem;
+    }
+    .referee-card .ref-name {
+      font-weight: 700; color: var(--ink); font-size: .95rem; margin-bottom: .2rem;
+    }
+    .referee-card .ref-role {
+      font-size: .83rem; color: var(--teal); margin-bottom: .35rem;
+    }
+    .referee-card .ref-contact {
+      font-family: var(--font-mono);
+      font-size: .75rem; color: var(--ink-muted);
+    }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.4);
+      text-align: center;
+      padding: 2rem 5%;
+      font-size: .82rem;
+    }
+    footer strong { color: var(--teal-mid); }
+
+    /* ── SCROLL REVEAL ──────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 860px) {
+      #hero { grid-template-columns: 1fr; padding-top: 90px; }
+      .hero-card { display: none; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 480px) {
+      .hero-name { font-size: 2rem; }
+      section { padding: 60px 4%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────── -->
+<nav>
+  <div class="nav-logo">Irene<span>.</span></div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">// Available for opportunities</div>
+    <h1 class="hero-name">Irene Murhula<br><em>Mugwarhiriza</em></h1>
+    <p class="hero-title">Statistician &amp; Data Scientist</p>
+    <p class="hero-bio">Seeking opportunities in banking, risk, or data analytics to apply skills in Statistics, Python, Power BI, SQL, and machine learning to support data-driven decision-making.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in touch</a>
+      <a href="#projects" class="btn-outline">View projects</a>
+    </div>
+  </div>
+
+  <div class="hero-card reveal">
+    <div class="hero-card-avatar">IM</div>
+    <h3>Irene Murhula</h3>
+    <div class="card-role">Data Scientist · Nairobi, Kenya</div>
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">ML Projects</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Technical Skills</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">70%+</div>
+        <div class="stat-label">Academic Excellence</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">🏆</div>
+        <div class="stat-label">Full Scholarship</div>
+      </div>
+    </div>
+    <div class="hero-langs">
+      <span class="lang-chip">🇫🇷 French</span>
+      <span class="lang-chip">🇬🇧 English</span>
+      <span class="lang-chip">🇰🇪 Swahili</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ─────────────────────────────────────────── -->
+<section id="skills">
+  <div class="section-label">What I work with</div>
+  <h2 class="section-title">Technical <span>Skills</span></h2>
+  <div class="skills-grid">
+
+    <div class="skill-card reveal">
+      <h4><span class="icon">🐍</span> Programming</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">Scikit-learn</span>
+        <span class="skill-tag">Matplotlib</span>
+        <span class="skill-tag">Seaborn</span>
+        <span class="skill-tag">R</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal">
+      <h4><span class="icon">🤖</span> Machine Learning</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Classification</span>
+        <span class="skill-tag">Regression</span>
+        <span class="skill-tag">Clustering</span>
+        <span class="skill-tag">XGBoost</span>
+        <span class="skill-tag">Random Forest</span>
+        <span class="skill-tag">Neural Networks</span>
+        <span class="skill-tag">Weka</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal">
+      <h4><span class="icon">📊</span> Data &amp; BI</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">SQL / MySQL</span>
+        <span class="skill-tag">Data Mining</span>
+        <span class="skill-tag">Data Engineering</span>
+        <span class="skill-tag">EDA</span>
+        <span class="skill-tag">Feature Engineering</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal">
+      <h4><span class="icon">💳</span> Finance &amp; Risk</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Credit Risk Modelling</span>
+        <span class="skill-tag">Probability of Default</span>
+        <span class="skill-tag">Loss Given Default</span>
+        <span class="skill-tag">Credit Scoring</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal">
+      <h4><span class="icon">📐</span> Statistics</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Statistical Inference</span>
+        <span class="skill-tag">Descriptive Statistics</span>
+        <span class="skill-tag">Data Visualisation</span>
+        <span class="skill-tag">Data Ethics</span>
+        <span class="skill-tag">AI</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal">
+      <h4><span class="icon">💼</span> Office &amp; Soft Skills</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">MS Excel</span>
+        <span class="skill-tag">PowerPoint</span>
+        <span class="skill-tag">Research &amp; Analysis</span>
+        <span class="skill-tag">Problem Solving</span>
+        <span class="skill-tag">Team Collaboration</span>
+        <span class="skill-tag">Leadership</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ─────────────────────────────────────── -->
+<section id="experience">
+  <div class="section-label">Work history</div>
+  <h2 class="section-title">Professional <span>Experience</span></h2>
+  <div class="timeline">
+
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-date">January – March 2026</div>
+      <div class="tl-title">Data Entry Assistant</div>
+      <div class="tl-org">Strathmore University — Admissions Office</div>
+      <ul class="tl-bullets">
+        <li>Processed and digitalised large volumes of student application data with strong attention to detail.</li>
+        <li>Conducted data validation checks to minimise entry errors.</li>
+        <li>Improved data consistency by identifying and correcting duplicate or incomplete records.</li>
+        <li>Ensured secure handling of confidential academic and personal information.</li>
+        <li>Collaborated with administrative staff to streamline record-keeping processes.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-date">June – September 2022</div>
+      <div class="tl-title">Secretarial &amp; Administration</div>
+      <div class="tl-org">Division of Urban Planning and Housing</div>
+      <ul class="tl-bullets">
+        <li>Organised and classified official documents for efficient retrieval and storage.</li>
+        <li>Received and handled incoming mail and correspondence.</li>
+        <li>Maintained physical and digital files in accordance with office procedures.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PROJECTS ───────────────────────────────────────── -->
+<section id="projects">
+  <div class="section-label">Selected work</div>
+  <h2 class="section-title">Data Science <span>Projects</span></h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-domain">Finance &amp; Risk</div>
+      <div class="project-title">Credit Risk Scoring System</div>
+      <p class="project-desc">Built a full credit risk scoring system to predict borrower default. Compared Decision Trees, Random Forest, Extra Trees, and XGBoost, performing feature engineering and model evaluation to select the most accurate algorithm.</p>
+      <div class="project-tools">
+        <span class="tool-chip">Python</span>
+        <span class="tool-chip">XGBoost</span>
+        <span class="tool-chip">Scikit-learn</span>
+        <span class="tool-chip">Pandas</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-domain">Finance</div>
+      <div class="project-title">Customer Behaviours &amp; Churn Insight Dashboard</div>
+      <p class="project-desc">Designed an interactive Power BI dashboard to analyse customer behaviour, identify churn patterns, and uncover key drivers of retention using DAX measures and dynamic visualisations.</p>
+      <div class="project-tools">
+        <span class="tool-chip">Power BI</span>
+        <span class="tool-chip">DAX</span>
+        <span class="tool-chip">Data Transformation</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-domain">Data Science</div>
+      <div class="project-title">Fraud Detection System</div>
+      <p class="project-desc">Compared KNN, Decision Tree, and Artificial Neural Network models to identify the most accurate fraud detection approach, evaluated with MSE, confusion matrix, classification report, and accuracy score.</p>
+      <div class="project-tools">
+        <span class="tool-chip">Python</span>
+        <span class="tool-chip">ANN</span>
+        <span class="tool-chip">Scikit-learn</span>
+        <span class="tool-chip">VS Code</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-domain">Agriculture</div>
+      <div class="project-title">Kenya Industrial Crops — Season Classifier</div>
+      <p class="project-desc">Built a predictive model using KNBS data to classify agricultural seasons as Good or Bad. Performed data cleaning, feature engineering, EDA, and model evaluation using accuracy, precision, recall, and F1 score.</p>
+      <div class="project-tools">
+        <span class="tool-chip">Python</span>
+        <span class="tool-chip">Scikit-learn</span>
+        <span class="tool-chip">KNBS Data</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-domain">Environment</div>
+      <div class="project-title">CO₂ Carbon Emission Clustering</div>
+      <p class="project-desc">Developed a K-means clustering model on historical CO₂ emission data. Handled full data pipeline: cleaning, outlier removal, transformation, correlation analysis, and MySQL storage.</p>
+      <div class="project-tools">
+        <span class="tool-chip">Python</span>
+        <span class="tool-chip">K-Means</span>
+        <span class="tool-chip">MySQL</span>
+        <span class="tool-chip">Seaborn</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-domain">Insurance</div>
+      <div class="project-title">Assurance Claim Prediction</div>
+      <p class="project-desc">Developed a linear regression model to estimate the likelihood of insurance claims from historical data, covering full pipeline from EDA and feature engineering to model training and evaluation.</p>
+      <div class="project-tools">
+        <span class="tool-chip">Python</span>
+        <span class="tool-chip">Linear Regression</span>
+        <span class="tool-chip">Google Colab</span>
+        <span class="tool-chip">Scikit-learn</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── EDUCATION ──────────────────────────────────────── -->
+<section id="education">
+  <div class="section-label">Academic background</div>
+  <h2 class="section-title">Education &amp; <span>Certifications</span></h2>
+  <div class="edu-grid">
+
+    <div class="edu-card reveal">
+      <div class="edu-badge">🎓 Degree in Progress</div>
+      <div class="edu-degree">B.Sc. Statistics and Data Science</div>
+      <div class="edu-school">Strathmore University</div>
+      <div class="edu-period">2023 – Present</div>
+      <div class="edu-focus">Major: Statistics &amp; Data Science — Focus areas: Machine Learning, Data Mining, Data Engineering, SQL, Data Ethics, Statistical Visualisation.</div>
+    </div>
+
+    <div class="edu-card reveal">
+      <div class="edu-badge">📜 Certification</div>
+      <div class="edu-degree">Credit Risk Modelling &amp; Its Application in Banks</div>
+      <div class="edu-school">Coursera</div>
+      <div class="edu-period">November 2025</div>
+      <div class="edu-focus">Finance &amp; Risk Management — Focus: Probability of Default, Loss Given Default, Credit Scoring, Machine Learning for Finance.</div>
+    </div>
+
+    <div class="edu-card reveal">
+      <div class="edu-badge">🏫 Vocational</div>
+      <div class="edu-degree">Diploma in Secretarial &amp; Office Administration</div>
+      <div class="edu-school">Fundi Maendeleo Technical Institute (ITFM)</div>
+      <div class="edu-period">2016 – 2022</div>
+      <div class="edu-focus">Focus: Microsoft Word, Excel, PowerPoint, Access.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── ACHIEVEMENTS ───────────────────────────────────── -->
+<section id="achievements">
+  <div class="section-label">Recognition</div>
+  <h2 class="section-title">Achievements &amp; <span style="color:var(--gold)">Awards</span></h2>
+  <div class="ach-grid">
+
+    <div class="ach-card reveal">
+      <div class="ach-icon">🥇</div>
+      <div class="ach-title">Certificate of Merit — Academic Excellence</div>
+      <div class="ach-org">Strathmore University · 2024–2025</div>
+      <div class="ach-desc">Awarded in recognition of academic excellence in B.Sc. Statistics and Data Science for achieving over 70% during the academic year.</div>
+    </div>
+
+    <div class="ach-card reveal">
+      <div class="ach-icon">🎓</div>
+      <div class="ach-title">Full Tuition Scholarship — Academic Excellence</div>
+      <div class="ach-org">Strathmore University · 2023–2024</div>
+      <div class="ach-desc">Awarded after excelling in a competitive mathematics test during the admission process.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── LEADERSHIP ─────────────────────────────────────── -->
+<section id="leadership">
+  <div class="section-label">Beyond the desk</div>
+  <h2 class="section-title">Leadership &amp; <span>Involvement</span></h2>
+  <div class="lead-grid">
+
+    <div class="lead-card reveal">
+      <div class="lead-role">Vice Chairperson</div>
+      <div class="lead-club">Mathematics Club</div>
+      <div class="lead-meta">Strathmore University · 2025 – Present</div>
+      <div class="lead-desc">Supports the Chairperson and assumes full leadership responsibility in their absence to ensure smooth club operations.</div>
+    </div>
+
+    <div class="lead-card reveal">
+      <div class="lead-role">Marketing Leader</div>
+      <div class="lead-club">French Club</div>
+      <div class="lead-meta">Strathmore University · 2024 – Present</div>
+      <div class="lead-desc">Manages publicity and student engagement for club activities.</div>
+    </div>
+
+    <div class="lead-card reveal">
+      <div class="lead-role">Member</div>
+      <div class="lead-club">Debate Club</div>
+      <div class="lead-meta">Strathmore University · 2023 – Present</div>
+      <div class="lead-desc">Engages in competitive debating, enhancing communication, critical thinking, and persuasion skills.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────────────── -->
+<section id="contact">
+  <div class="section-label">Let's connect</div>
+  <div class="contact-inner">
+    <div class="contact-copy">
+      <h2>Open to new<br>opportunities</h2>
+      <p>I'm actively looking for roles in banking, risk, and data analytics where I can apply my skills in machine learning, statistical modelling, and data visualisation. Don't hesitate to reach out.</p>
+      <div class="contact-links">
+        <a href="mailto:murhulairenee@gmail.com" class="contact-link">
+          <span class="cl-icon">✉️</span>
+          <span>
+            <span class="cl-label">Email</span>
+            <span class="cl-value">murhulairenee@gmail.com</span>
+          </span>
+        </a>
+        <a class="contact-link">
+          <span class="cl-icon">📍</span>
+          <span>
+            <span class="cl-label">Location</span>
+            <span class="cl-value">Nairobi, Kenya</span>
+          </span>
+        </a>
+        <a class="contact-link">
+          <span class="cl-icon">🎓</span>
+          <span>
+            <span class="cl-label">Institution</span>
+            <span class="cl-value">Strathmore University</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div class="referees">
+      <h3>References</h3>
+
+      <div class="referee-card reveal">
+        <div class="ref-name">Dr. Titus Orwa</div>
+        <div class="ref-role">Lecturer, School of Mathematics Institute Science (SIMS) · Strathmore University</div>
+        <div class="ref-contact">torwa@strathmore.edu &nbsp;|&nbsp; +254 719 893 267</div>
+      </div>
+
+      <div class="referee-card reveal">
+        <div class="ref-name">Dr. Kevin Otieno</div>
+        <div class="ref-role">Lecturer, School of Mathematics Institute Science (SIMS) · Strathmore University</div>
+        <div class="ref-contact">kotieno@strathmore.edu &nbsp;|&nbsp; +254 711 857 762</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <p>© 2026 <strong>Irene Murhula Mugwarhiriza</strong> · Statistician &amp; Data Scientist · Nairobi, Kenya</p>
+</footer>
+
+<!-- ── SCROLL REVEAL SCRIPT ───────────────────────────── -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
